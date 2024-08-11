@@ -53,15 +53,14 @@ app.post('/login', (req, res) => {
                 if (result) {
                     res.send({msg: "Usuário efetuou LogIn com sucesso!"});
                 } else {
-                    res.send({msg: "A senha está incorreta."});
+                    res.status(202).send({msg: "A senha está incorreta."});
                 }
             });
         } else {
-            res.send({msg: "E-mail não encontrado."});
+            res.status(202).send({msg: "E-mail não encontrado. Verifique novamente ou cadastre-se."});
         }
     });
 })
-
 
 
 app.listen(3001, () => {

@@ -2,18 +2,25 @@ import './login.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Axios from 'axios';
 import * as yup from "yup";
+import { useNavigate } from 'react-router-dom';
+
+import { FaUser } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 
 const Login = () => {
+    const navigate = useNavigate();
 
     const handeClickLogin = (values) => {
         Axios.post("http://localhost:3001/login", {
             email: values.email,
             password: values.password
         }).then((response) => {
-            if(response) {
-                console.log(response)
-            };
+            if(response.status != 200) {
+                alert(response.data.msg);
+            } else {
+                navigate('/home')
+            }
         })
     };
 
@@ -40,14 +47,16 @@ const Login = () => {
     return (
         <div className='container'>
             <h1>Login</h1>
+            <p>Faça seu login para continuar.</p>
             <Formik initialValues={{}} onSubmit={handeClickLogin} validationSchema={validationLogin}> 
                 <Form className='login-form'>
                     <div className='login-form-group'>
-                        <label>E-Mail</label>
+                        <FaUser size={20}/>
                         <Field
                             id='email' 
                             name='email' 
                             className='form-field'
+                            placeholder='E-Mail'
                         />
 
                         <ErrorMessage
@@ -57,11 +66,12 @@ const Login = () => {
                         />
                     </div>
                     <div className='login-form-group'>
-                    <label>Senha</label>
+                        <RiLockPasswordFill size={20}/>
                         <Field 
                             id='password'
                             name='password' 
-                            className='form-field' 
+                            className='form-field'
+                            placeholder='Senha' 
                         />
 
                         <ErrorMessage
@@ -74,16 +84,17 @@ const Login = () => {
                 </Form>
             </Formik>
 
-            
             <h1>Cadastro</h1>
+            <p>Cadastre-se para continuar.</p>
             <Formik initialValues={{}} onSubmit={handeClickSignUp} validationSchema={validationSignUp}> 
                 <Form className='login-form'>
                     <div className='login-form-group'>
-                        <label>E-Mail</label>
-                        <Field 
+                        <FaUser size={20}/>
+                        <Field
                             id='email' 
                             name='email' 
-                            className='form-field' 
+                            className='form-field'
+                            placeholder='E-Mail'
                         />
 
                         <ErrorMessage
@@ -93,13 +104,14 @@ const Login = () => {
                         />
                     </div>
                     <div className='login-form-group'>
-                        <label>Senha</label>
+                        <RiLockPasswordFill size={20}/>
                         <Field 
                             id='password'
                             name='password' 
-                            className='form-field' 
+                            className='form-field'
+                            placeholder='Senha' 
                         />
-
+                        
                         <ErrorMessage
                             component='span'
                             name='password'
@@ -107,11 +119,12 @@ const Login = () => {
                         />
                     </div>
                     <div className='login-form-group'>
-                        <label>Confirme sua senha</label>
+                        <RiLockPasswordFill size={20}/>
                         <Field 
-                            id='confirmPassord'
+                            id='password'
                             name='confirmPassword' 
-                            className='form-field' 
+                            className='form-field'
+                            placeholder='Confirme sua senha' 
                         />
 
                         <ErrorMessage

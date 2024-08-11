@@ -11,5 +11,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  background-color: #f5f4f2;
+  background-color: #E2DAD6;
+  color: #201E43;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
