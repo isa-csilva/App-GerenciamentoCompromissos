@@ -15,6 +15,7 @@ const db = mysql.createPool({
 app.use(express.json());
 app.use(cors());
 
+/* SignIn e LogIn */
 app.post('/signin', (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
@@ -35,7 +36,7 @@ app.post('/signin', (req, res) => {
             });
 
         } else {
-            res.send({msg: "Já existe um usuário cadastrado com esse e-mail."})
+            res.status(202).send({msg: "Já existe um usuário cadastrado com esse e-mail."})
         }
     });
 });
@@ -53,7 +54,7 @@ app.post('/login', (req, res) => {
                 if (result) {
                     res.send({msg: "Usuário efetuou LogIn com sucesso!"});
                 } else {
-                    res.status(202).send({msg: "A senha está incorreta."});
+                    res.status(202).send({msg: "E-mail ou senha incorretos. Verifique e tente novamente."});
                 }
             });
         } else {
@@ -61,9 +62,72 @@ app.post('/login', (req, res) => {
         }
     });
 })
+/* */
 
+/* Compromissos */
+app.post('/add', (req, res) => {
+    const { title } = req.body;
+    const { description } = req.body;
+    const { date } = req.body;
+    let q = 'INSERT INTO compromissos (title, description, date) VALUES (?,?,?)';
+
+    db.query(q, [title, description, date], (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        }
+    })
+})
+
+app.get('/getCards', (req, res) => {
+    let q = 'SELECT * FROM compromissos';
+    db.query(q, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else res.send(result);
+    })
+})
+
+app.post('/search', (req, res) => {
+    const { title } = req.body;
+    const { description } = req.body;
+    const { date } = req.body;
+    let q = 'SELECT * FROM compromissos WHERE title = ? AND description = ? AND date = ?';
+
+    db.query(q, [title, description, date], (err, result) => {
+        if (err) {
+            console.log(err);
+        } else res.send(result);
+    })
+})
+
+app.put('/edit', (req, res) => {
+    const { id } = req.body;
+    const { title } = req.body;
+    const { description } = req.body;
+    const { date } = req.body;
+
+    let q = 'UPDATE compromissos SET title = ?, description = ?, date = ? WHERE idcompromissos = ?';
+    db.query(q, [title, description, date, id], (err, result) => {
+        if (err) {
+            console.log(err)
+        } else res.send(result);
+    })
+})
+
+app.delete('/delete/:id', (req, res) => {
+    const { id } = req.params;
+    let q = 'DELETE FROM compromissos WHERE idcompromissos = ?';
+
+    db.query(q, [id], (err, result) => {
+        if (err) {
+            console.log(err);
+        } else res.send(result);
+    })
+})
+/* */
 
 app.listen(3001, () => {
-    console.log('Rodando na 3001')
 });
 

@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 
-
 const Login = () => {
     const navigate = useNavigate();
 
@@ -29,8 +28,10 @@ const Login = () => {
             email: values.email,
             password: values.password
         }).then((response) => {
-            console.log(response);
+            alert(response.data.msg)
         });
+
+        
     };
 
     const validationLogin = yup.object().shape({
@@ -70,6 +71,7 @@ const Login = () => {
                         <Field 
                             id='password'
                             name='password' 
+                            type='password'
                             className='form-field'
                             placeholder='Senha' 
                         />
@@ -107,7 +109,8 @@ const Login = () => {
                         <RiLockPasswordFill size={20}/>
                         <Field 
                             id='password'
-                            name='password' 
+                            name='password'
+                            type='password' 
                             className='form-field'
                             placeholder='Senha' 
                         />
@@ -123,6 +126,7 @@ const Login = () => {
                         <Field 
                             id='password'
                             name='confirmPassword' 
+                            type='password'
                             className='form-field'
                             placeholder='Confirme sua senha' 
                         />
