@@ -41,7 +41,7 @@ export default function CardCompromisse(props) {
       setListCard={props.setListCard}
     />
     <div className='card--container' onClick={() => handleClickCard()}>
-      <Card sx={{ maxWidth: 345, marginBottom: 2 }}>
+      <Card sx={{ maxWidth: 300, minWidth: 100 , marginBottom: 3 }}>
             <CardActionArea>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div" color="#6482AD">

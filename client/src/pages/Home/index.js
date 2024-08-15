@@ -8,6 +8,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Home = () => {
     const [values, setValues] = useState();
@@ -43,7 +48,7 @@ const Home = () => {
                 <button 
                     type='button' 
                     onClick={() => navigate('/')}
-                    className='exit-btn btn'><p>Sair</p><IoExit size={20}/></button>
+                    className='exit-btn btn'> Sair <IoExit size={20}/></button>
             </header>
             
             <div className='container-home--search-bar'>
@@ -52,17 +57,23 @@ const Home = () => {
             </div>
 
             <div className='container-home--card'>
-                {listCompromisses.map((item) => 
-                    <CardCompromisse 
-                        key={item.idcompromissos} 
-                        listCompromisses={listCompromisses} 
-                        setListCompromisses={setListCompromisses}
-                        id={item.idcompromissos}
-                        title={item.title}
-                        description={item.description}
-                        date={item.date}
-                    />
+                <Container>
+                    <Row>
+                        {listCompromisses.map((item) => 
+                        <Col xs={6} lg={4}>
+                        <CardCompromisse 
+                            key={item.idcompromissos} 
+                            listCompromisses={listCompromisses} 
+                            setListCompromisses={setListCompromisses}
+                            id={item.idcompromissos}
+                            title={item.title}
+                            description={item.description}
+                            date={item.date}
+                        />
+                        </Col>
                 )}
+                    </Row>
+                </Container>
             </div>
 
             <div className='container-home--add-compromise'>

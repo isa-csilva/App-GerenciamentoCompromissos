@@ -1,8 +1,7 @@
 .container-home {
-    width: 700px;
-    max-width: 800px;
+    width: 900px;
     margin: 0 auto;
-    height: max-content;
+    height: fit-content;
     background-color: #F5EDED;
     box-shadow: 6px 7px rgba(0, 0, 0, 0.2);
     padding: 20px 20px;
@@ -67,3 +66,29 @@
 .container-home--add-compromise input {
     margin-bottom: 10px;
 }
+
+/* Responsivity */
+@media (max-width: 575.98px) {
+    .container-home {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+    }
+
+ }
+
+ @media (min-width: 576px) and (max-width: 991.98px) {
+    body {
+        padding: 0;
+    }
+
+    .container-home {
+        width: 100vw;
+        height: 100vh;
+        padding: 20px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+  }

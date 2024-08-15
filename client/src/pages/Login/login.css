@@ -1,20 +1,24 @@
-.container {
-    width: 400px;
+body {
+    height: fit-content;
+    padding: 35px 0;
+}
+
+.container-login {
+    width: 500px;
     height: max-content;
-    margin: auto;
     background-color: #F5EDED;
     box-shadow: 6px 7px rgba(0, 0, 0, 0.2);
     padding: 20px 20px;
     border-radius: 10px;
 }
 
-.container h1 {
+.container-login h1 {
     margin-bottom: 10px;
     font-weight: 600;
     
 }
 
-.container p {
+.container-login p {
     margin-bottom: 15px;
 }
 
@@ -73,3 +77,19 @@
     padding: 7px;
     border: none;
 }
+
+
+/* Responsivity */
+@media (max-width: 575.98px) {
+    body {
+        padding: 0;
+    }
+
+    .container-login {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+ }
