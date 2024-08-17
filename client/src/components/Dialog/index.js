@@ -5,14 +5,13 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Axios from 'axios';
 
 export default function FormDialog(props) {
   const [editValues, setEditValues] = useState({
     id: props.id,
-    name: props.name,
+    title: props.title,
     description: props.description,
     date: props.date
   });
@@ -27,32 +26,20 @@ export default function FormDialog(props) {
   };
 
   const handleEditCompromisse = () => {
-      Axios.put('http://localhost:3001/edit', {
-        id: editValues.id,
-        title: editValues.title,
-        description: editValues.description,
-        date: editValues.date
-      })
-      handleClose();
+    Axios.put('http://localhost:3001/edit', {
+      id: editValues.id,
+      title: editValues.title,
+      description: editValues.description,
+      date: editValues.date
+    })
+    handleClose();
+    document.location.reload();
   };
-
-
-  const formatDate = () => {
-    let date = props.date
-    let arrayDate = date.split('');
-
-    let year = (arrayDate[0] + arrayDate[1] + arrayDate[2] + arrayDate[3]);
-    let month = (arrayDate[5] + arrayDate[6]);
-    let day = (arrayDate[8] + arrayDate[9]);
-    let newDate = [year, month, day];
-
-    let formattedDate = (newDate.join('-'));
-    return formattedDate;
-  }
 
   const handleDeleteCompromisse = () => {
     Axios.delete(`http://localhost:3001/delete/${editValues.id}`);
     handleClose();
+    document.location.reload();
   }
 
   const handleChangeValues = (value) => {
@@ -81,7 +68,6 @@ export default function FormDialog(props) {
         <DialogTitle>Editar Compromisso</DialogTitle>
         <DialogContent>
           <TextField
-            autoFocus
             required
             margin="dense"
             id="title"
@@ -109,7 +95,7 @@ export default function FormDialog(props) {
             id="date"
             type="date"
             fullWidth
-            defaultValue={formatDate(props.date)}
+            defaultValue={props.date}
             variant="standard"
             onChange={handleChangeValues}
           />

@@ -93,7 +93,8 @@ app.post('/search', (req, res) => {
     const { title } = req.body;
     const { description } = req.body;
     const { date } = req.body;
-    let q = 'SELECT * FROM compromissos WHERE title = ? AND description = ? AND date = ?';
+
+    let q = 'SELECT * FROM compromissos WHERE title = ? OR description = ? OR date = ?';
 
     db.query(q, [title, description, date], (err, result) => {
         if (err) {

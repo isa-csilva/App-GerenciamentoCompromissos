@@ -1,11 +1,11 @@
 body {
-    height: fit-content;
+    height: 100%;
     padding: 35px 0;
 }
 
 .container-login {
-    width: 500px;
-    height: max-content;
+    width: 400px;
+    height: fit-content;
     background-color: #F5EDED;
     box-shadow: 6px 7px rgba(0, 0, 0, 0.2);
     padding: 20px 20px;
@@ -37,6 +37,7 @@ body {
     align-items: center;
     gap: 10px;
 }
+
 
 .login-form-group .form-field {
     width: 100%;
@@ -82,11 +83,26 @@ body {
 /* Responsivity */
 @media (max-width: 575.98px) {
     body {
+        height: 100%;
         padding: 0;
     }
 
     .container-login {
         width: 100vw;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+ }
+
+ @media (min-width: 576px) and (max-width: 991.98px) {
+    body {
+        height: 100%;
+        padding: 0;
+    }
+
+    .container-login {
         height: 100vh;
         display: flex;
         flex-direction: column;

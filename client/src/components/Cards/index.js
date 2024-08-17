@@ -6,25 +6,11 @@ import { CardActionArea } from '@mui/material';
 
 import FormDialog from '../Dialog';
 
-
 export default function CardCompromisse(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickCard = () => {
     setOpen(true)
-  }
-
-  const formatDate = () => {
-    let date = props.date
-    let arrayDate = date.split('');
-
-    let year = (arrayDate[0] + arrayDate[1] + arrayDate[2] + arrayDate[3]);
-    let month = (arrayDate[5] + arrayDate[6]);
-    let day = (arrayDate[8] + arrayDate[9]);
-    let newDate = [day, month, year];
-
-    let formattedDate = (newDate.join('/'));
-    return formattedDate;
   }
 
   return (
@@ -33,15 +19,16 @@ export default function CardCompromisse(props) {
     <FormDialog 
       open={open} 
       setOpen={setOpen} 
+      listCard={props.listCard}
+      setListCard={props.setListCard}
       id={props.id}
       title={props.title}
       description={props.description}
       date={props.date}
-      listCard={props.listCard}
-      setListCard={props.setListCard}
+      
     />
     <div className='card--container' onClick={() => handleClickCard()}>
-      <Card sx={{ maxWidth: 300, minWidth: 100 , marginBottom: 3 }}>
+      <Card sx={{ maxWidth: 300, minWidth: 100 , marginBottom: 2 }}>
             <CardActionArea>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div" color="#6482AD">
@@ -51,7 +38,7 @@ export default function CardCompromisse(props) {
                   {props.description}
                 </Typography>
                 <Typography variant="body3" color="#6482AD">
-                 Para o dia: {formatDate(props.date)}
+                 Para o dia: {props.date}
                 </Typography>
               </CardContent>
             </CardActionArea>

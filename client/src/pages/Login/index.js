@@ -15,7 +15,7 @@ const Login = () => {
             email: values.email,
             password: values.password
         }).then((response) => {
-            if(response.status != 200) {
+            if(response.status !== 200) {
                 alert(response.data.msg);
             } else {
                 navigate('/home')
@@ -48,7 +48,7 @@ const Login = () => {
     return (
         <div className='container-login'>
             <h1>Login</h1>
-            <p>Faça seu login para continuar.</p>
+            <p>Faça login para continuar.</p>
             <Formik initialValues={{}} onSubmit={handeClickLogin} validationSchema={validationLogin}> 
                 <Form className='login-form'>
                     <div className='login-form-group'>
@@ -61,7 +61,7 @@ const Login = () => {
                         />
 
                         <ErrorMessage
-                            component='span'
+                            component='h5'
                             name='email'
                             className='form-error'
                         />
