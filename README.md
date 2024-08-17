@@ -11,7 +11,7 @@ Após entrar com sua conta, você pode começar a **criar seus compromissos**, e
 - ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
 ## 💻 Instalação do projeto
-- Realize um clone do projeto: `$ git clone https://github.com/isa-csilva/App-GerenciamentoAgendas.git`
+- Realize um clone do projeto: `$ git clone https://github.com/isa-csilva/App-GerenciamentoCompromissos.git`
 - Abra a pasta em seu editor de código-fonte de preferência (neste projeto eu utilizei o [VSCode](https://code.visualstudio.com/))
 
 ### Client
